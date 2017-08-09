@@ -42,8 +42,8 @@ RUN cd /tmp && \
 # ZEO instance prereqs
 COPY src/start.sh /usr/bin/start
 
-RUN groupadd -g 500 zope && \
-    useradd -g 500 -u 500 -m -s /bin/bash zope && \
+RUN groupadd -g 501 zope && \
+    useradd -g 501 -u 501 -m -s /bin/bash zope && \
     chmod +x /usr/bin/start
 
 # Create ZEO instance
