@@ -7,16 +7,17 @@ _terminate() {
 
 trap _terminate SIGTERM SIGINT
 
-tempstoragecheck() {
-  if [ "${TEMPSTORAGE,,}" == "true" ]; then
-    
-    zeoconf=$ZEOHOME/etc/zeo.conf
 
-    echo "
+ZEOCONF=$ZEOHOME/etc/zeo.conf
+tempstoragecheck() {
+  if grep -xq "%import tempstorage" $ZEOCONF ; then
+    echo "Temporary storage already configured."
+  elif [ "${TEMPSTORAGE,,}" == "true" ]; then
+      echo "
 %import tempstorage
 <temporarystorage temp>
   name temporary storage for sessioning
-</temporarystorage>" >> $zeoconf
+</temporarystorage>" >> $ZEOCONF
  
   fi
 }
